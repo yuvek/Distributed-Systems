@@ -1,0 +1,84 @@
+Configuration :
+ - Name : yuvek1
+   IP   : 128.237.116.58
+   Port : 12998
+ - Name : yuvek2
+   IP   : 128.237.116.58
+   Port : 11872
+ - Name : yuvek3
+   IP   : 128.237.116.58
+   Port : 11873
+SendRules :
+ - Action : drop 
+   Src    : yuvek1
+   ID     : 10
+ - Action : delay
+   Src    : yuvek1
+   Dest   : yuvek2
+ - Action : duplicate 
+   Src    : yuvek1
+   Kind   : Ack
+   ID     : 0  
+ReceiveRules :
+ - Action : drop      
+   Src    : yuvek1       
+  
+ClockType :Configuration :
+ - Name : tony1
+   IP   : 128.237.125.133
+   Port : 12344
+   Group: 
+    - tony1
+    - ton
+    - yuvek1        
+ - Name : tony2 
+   IP   : 128.237.125.133
+   Port : 14255
+   Group: 
+    - tony2
+    - yuvek1
+    - yuvek2
+ - Name : yuvek1
+   IP   : 10.0.0.13
+   Port : 12998
+   Group: 
+    - yuvek1
+    - tony2
+    - tony1
+SendRules :
+ - Action : drop 
+   Src    : yuvek1
+   ID     : 10
+ - Action : delay
+   Src    : yuvek1
+   Kind   : request
+ - Action : duplicate 
+   Src    : yuvek1
+   Kind   : Ack
+   ID     : 0  
+ReceiveRules :
+ - Action : delay      
+   Src    : tony1        
+   ID    :  8
+
+ClockType :
+ - Vector
+CastType :
+- Multicast
+ 
+MultiCast :
+ - yuvek1
+ - yuvek2
+ - yuvek3
+     
+ 
+ - Vector
+CastType :
+- Multicast
+ 
+MultiCast :
+ - yuvek1
+ - yuvek2
+ - yuvek3
+     
+ 

@@ -1,0 +1,48 @@
+Configuration :
+ - Name : tony1
+   IP   : 128.237.255.123
+   Port : 12344
+   Group: 
+    - tony1
+    - tony2
+    - tony3        
+ - Name : tony2 
+   IP   : 128.237.255.123
+   Port : 14255
+   Group: 
+    - tony1
+    - tony2
+    - tony3
+ - Name : tony3
+   IP   : 128.237.255.123
+   Port : 12998
+   Group: 
+    - tony1
+    - tony2
+    - tony3
+
+SendRules :
+ - Action : delay
+   Src    : tony1
+   Dest   : tony2
+   ID     : 100
+ - Action : delay
+   Src    : yuvek1
+   Kind   : request
+ - Action : duplicate 
+   Src    : tony1
+   ID     : 100
+ReceiveRules :
+ - Action : delay      
+   Src    : tony1        
+   Dest   : tony2
+   ID     : 100
+ClockType :
+ - Vector
+CastType :
+- Multicast
+ 
+MultiCast :
+ - tony1
+ - tony2
+ - tony3
